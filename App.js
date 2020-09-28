@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Navigator from "./pages/Navigator"
+import { StateProvider } from './StateProvider/StateProvider';
+import reducer, { initialState } from './StateProvider/reducer';
+
+//-------------------------------------All imports above
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+        {/* Wraping everything in State Provider */}
+        <StateProvider initialState={initialState}
+           reducer={reducer}>
+          <Navigator/>
+        </StateProvider>
+    <StatusBar backgroundColor="#009387" />
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
